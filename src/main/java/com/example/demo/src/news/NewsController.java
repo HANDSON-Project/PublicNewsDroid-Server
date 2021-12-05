@@ -30,5 +30,5 @@ public class NewsController {
         this.newsService = newsService;
         this.jwtService = jwtService;
     }
-    
+
 }
