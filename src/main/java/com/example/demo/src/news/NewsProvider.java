@@ -25,5 +25,5 @@ public class NewsProvider {
         this.newsDao = newsDao;
         this.jwtService = jwtService;
     }
-    
+
 }
