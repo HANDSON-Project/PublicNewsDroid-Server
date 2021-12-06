@@ -26,4 +26,26 @@ public class NewsService {
         this.newsProvider = newsProvider;
         this.jwtService = jwtService;
     }
+
+    // 뉴스 생성
+    public PostNewsRes createNews(PostNewsReq postNewsReq) throws BaseException {
+        try {
+            int newsIdx = newsDao.createNews(postNewsReq);
+            return new PostNewsRes(newsIdx);
+        } catch (Exception exception) { // DB에 이상이 있는 경우 에러 메시지를 보냅니다.
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    // 뉴정보 수정(Patch)
+    public void modifyNews(News news) throws BaseException {
+        try {
+            int result = newsDao.modifyNews(news);
+            if (result == 0) {
+                throw new BaseException(MODIFY_FAIL_USERNAME);
+            }
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }
