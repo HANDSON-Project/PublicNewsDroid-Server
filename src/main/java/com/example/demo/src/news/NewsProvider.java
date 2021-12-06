@@ -26,4 +26,35 @@ public class NewsProvider {
         this.jwtService = jwtService;
     }
 
+    // News 정보를 조회
+    public List<GetNewsRes> getAllNews() throws BaseException {
+        try {
+            List<GetNewsRes> getNewsRes = newsDao.getAllNews();
+            return getNewsRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    // 해당 지역에 속한 News들의 정보 조회
+    public List<GetNewsRes> getNewsesByLocation(String location) throws BaseException {
+        try {
+            List<GetNewsRes> getNewsesRes = newsDao.getNewsesByLocation(location);
+            return getNewsesRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+
+    // 해당 newsIdx를 갖는 News의 정보 조회
+    public GetNewsRes getNews(int newsIdx) throws BaseException {
+        try {
+            GetNewsRes getNewsRes = newsDao.getNews(newsIdx);
+            return getNewsRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
 }
