@@ -28,6 +28,47 @@ public class ReactionController {
         this.jwtService = jwtService;
     }
 
+    // 뉴스 좋아요
+    @ResponseBody
+    @PostMapping("/likes")
+    public BaseResponse<String> createNews(@RequestBody PostNewsLikeReq postNewsLikeReq) {
+        // PostNewsLikeReq
+        try {
+            //jwt에서 idx 추출.
+            int userIdxByJwt = jwtService.getUserIdx();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(postNewsLikeReq.getUserIdx()!= userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+            try {
+                reactionService.createNewsLike(postNewsLikeReq);
+                String result = "뉴스 좋아요 성공했습니다.";
+                return new BaseResponse<>(result);
+            } catch (BaseException exception) {
+                return new BaseResponse<>((exception.getStatus()));
+            }
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    // 뉴스 좋아요 취소
+    @ResponseBody
+    @DeleteMapping("/likes")
+    public BaseResponse<String> deleteNewsLike(@RequestBody DeleteNewsLikeReq deleteNewsLikeReq) {
+        try {
+            int userIdxByJwt = jwtService.getUserIdx();
+            if(deleteNewsLikeReq.getUserIdx() != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+            reactionService.deleteNewsLike(deleteNewsLikeReq);
+            String result = "좋아요가 취소되었습니다.";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
     // 뉴스 댓글 생성
     @ResponseBody
     @PostMapping("/comments")

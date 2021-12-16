@@ -29,6 +29,14 @@ public class ReactionService {
         this.jwtService = jwtService;
     }
 
+    // 뉴스 좋아요 생성
+    public void createNewsLike(PostNewsLikeReq postNewsLikeReq) throws BaseException {
+    }
+
+    // 뉴스 좋아요 취소
+    public void deleteNewsLike(DeleteNewsLikeReq deleteNewsLikeReq) throws BaseException {
+    }
+
     // 뉴스 댓글 생성
     public void createNewsComment(PostNewsCommentReq postNewsCommentReq) throws BaseException {
         try {
