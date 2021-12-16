@@ -63,4 +63,8 @@ public class ReactionDao {
         Object[] deleteNewsCommmentParams = new Object[]{deleteNewsCommentReq.getCommentIdx()};
         this.jdbcTemplate.update(deleteNewsCommmentQuery, deleteNewsCommmentParams);
     }
+
+    // 뉴스 신고
+    public void createNewsReport(PostNewsReportReq postNewsReportReq) {
+    }
 }

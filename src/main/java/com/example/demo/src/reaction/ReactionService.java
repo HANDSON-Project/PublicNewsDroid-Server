@@ -68,5 +68,10 @@ public class ReactionService {
 
     // 뉴스 신고
     public void createNewsReport(PostNewsReportReq postNewsReportReq) throws BaseException {
+        try {
+            reactionDao.createNewsReport(postNewsReportReq);
+        } catch (Exception exception) { // DB에 이상이 있는 경우 에러 메시지를 보냅니다.
+            throw new BaseException(DATABASE_ERROR);
+        }
     }
 }
