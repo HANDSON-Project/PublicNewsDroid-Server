@@ -31,10 +31,20 @@ public class ReactionService {
 
     // 뉴스 댓글 생성
     public void createNewsComment(PostNewsCommentReq postNewsCommentReq) throws BaseException {
-
+        try {
+            reactionDao.createNewsCommment(postNewsCommentReq);
+        } catch (Exception exception) { // DB에 이상이 있는 경우 에러 메시지를 보냅니다.
+            throw new BaseException(DATABASE_ERROR);
+        }
     }
 
     // 뉴스 댓글 삭제
     public void deleteNewsCommment(DeleteNewsCommentReq deleteNewsCommentReq) throws BaseException {
+        try {
+            reactionDao.deleteNewsCommment(deleteNewsCommentReq);
+
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
     }
 }
