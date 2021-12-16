@@ -110,14 +110,14 @@ public class ReactionController {
 
     // 뉴스 댓글 삭제
     @ResponseBody
-    @DeleteMapping("/commments")
-    public BaseResponse<String> deleteNewsCommment(@RequestBody DeleteNewsCommentReq deleteNewsCommentReq) {
+    @DeleteMapping("/comments")
+    public BaseResponse<String> deleteNewsComment(@RequestBody DeleteNewsCommentReq deleteNewsCommentReq) {
         try {
             int userIdxByJwt = jwtService.getUserIdx();
             if(deleteNewsCommentReq.getUserIdx() != userIdxByJwt){
                 return new BaseResponse<>(INVALID_USER_JWT);
             }
-            reactionService.deleteNewsCommment(deleteNewsCommentReq);
+            reactionService.deleteNewsComment(deleteNewsCommentReq);
             String result = "댓글을 삭제했습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
