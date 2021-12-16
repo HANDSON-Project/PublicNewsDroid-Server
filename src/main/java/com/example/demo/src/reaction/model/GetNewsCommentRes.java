@@ -1,4 +1,4 @@
-package com.example.demo.src.reaction;
+package com.example.demo.src.reaction.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
