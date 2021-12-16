@@ -38,7 +38,7 @@ public class UserController {
    */
   // Body
   @ResponseBody
-  @CrossOrigin(origins = "http://localhost:8080")
+  @CrossOrigin("*")
   @PostMapping("/sign-up")
   public BaseResponse<PostUserRes> createUser(@RequestBody PostUserReq postUserReq) {
     // email 값이 null인지 체크
@@ -62,7 +62,7 @@ public class UserController {
    * [POST] /users/log-in
    */
   @ResponseBody
-  @CrossOrigin(origins = "http://localhost:8080")
+  @CrossOrigin("*")
   @PostMapping("/log-in")
   public BaseResponse<PostLoginRes> logIn(@RequestBody PostLoginReq postLoginReq) {
     try {
@@ -84,7 +84,7 @@ public class UserController {
    * [GET] /users? location=
    */
   @ResponseBody
-  @CrossOrigin(origins = "http://localhost:8080")
+  @CrossOrigin("*")
   @GetMapping("")
   public BaseResponse<List<GetUserRes>> getUsers(@RequestParam(required = false) String location) {
     try {
@@ -104,7 +104,7 @@ public class UserController {
    * [GET] /users/:userIdx
    */
   @ResponseBody
-  @CrossOrigin(origins = "http://localhost:8080")
+  @CrossOrigin("*")
   @GetMapping("/{userIdx}")
   public BaseResponse<GetUserRes> getUser(@PathVariable("userIdx") int userIdx) {
     try {
@@ -124,7 +124,7 @@ public class UserController {
    * [PATCH] /users/:userIdx
    */
   @ResponseBody
-  @CrossOrigin(origins = "http://localhost:8080")
+  @CrossOrigin("*")
   @PatchMapping("/{userIdx}")
   public BaseResponse<String> modifyUserName(@PathVariable("userIdx") int userIdx, @RequestBody User user) {
     try {
