@@ -125,4 +125,24 @@ public class ReactionController {
         }
     }
 
+    // 뉴스 신고
+    @ResponseBody
+    @PostMapping("/report")
+    public BaseResponse<String> createNewsReport(@RequestBody PostNewsReportReq postNewsReportReq) {
+        try {
+            int userIdxByJwt = jwtService.getUserIdx();
+            if(postNewsReportReq.getUserIdx() != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+            try {
+                reactionService.createNewsReport(postNewsReportReq);
+                String result = "뉴스를 신고했습니다.";
+                return new BaseResponse<>(result);
+            } catch (BaseException exception) {
+                return new BaseResponse<>((exception.getStatus()));
+            }
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
 }

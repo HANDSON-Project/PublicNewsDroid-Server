@@ -65,4 +65,8 @@ public class ReactionService {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    // 뉴스 신고
+    public void createNewsReport(PostNewsReportReq postNewsReportReq) throws BaseException {
+    }
 }
