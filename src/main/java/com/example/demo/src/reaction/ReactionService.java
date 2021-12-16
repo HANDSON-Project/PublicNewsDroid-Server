@@ -31,10 +31,20 @@ public class ReactionService {
 
     // 뉴스 좋아요 생성
     public void createNewsLike(PostNewsLikeReq postNewsLikeReq) throws BaseException {
+        try {
+            reactionDao.createNewsLike(postNewsLikeReq);
+        } catch (Exception exception) { // DB에 이상이 있는 경우 에러 메시지를 보냅니다.
+            throw new BaseException(DATABASE_ERROR);
+        }
     }
 
     // 뉴스 좋아요 취소
     public void deleteNewsLike(DeleteNewsLikeReq deleteNewsLikeReq) throws BaseException {
+        try {
+            reactionDao.deleteNewsLike(deleteNewsLikeReq);
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
     }
 
     // 뉴스 댓글 생성
