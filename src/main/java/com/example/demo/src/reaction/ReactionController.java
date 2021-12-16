@@ -55,6 +55,18 @@ public class ReactionController {
         }
     }
 
+    // 뉴스 댓글 조회
+    @ResponseBody
+    @GetMapping("/comments/{newsIdx}")
+    public BaseResponse<List<GetNewsCommentRes>> getUsers(@PathVariable("newsIdx") int newsIdx) {
+        try {
+            List<GetNewsCommentRes> getNewCommentRes = reactionProvider.getNewsComment(newsIdx);
+            return new BaseResponse<>(getNewCommentRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
     // 뉴스 댓글 삭제
     @ResponseBody
     @DeleteMapping("/commments")
