@@ -28,4 +28,13 @@ public class ReactionService {
         this.reactionProvider = reactionProvider;
         this.jwtService = jwtService;
     }
+
+    // 뉴스 댓글 생성
+    public void createNewsComment(PostNewsCommentReq postNewsCommentReq) throws BaseException {
+
+    }
+
+    // 뉴스 댓글 삭제
+    public void deleteNewsCommment(DeleteNewsCommentReq deleteNewsCommentReq) throws BaseException {
+    }
 }
