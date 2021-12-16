@@ -24,4 +24,13 @@ public class ReactionProvider {
         this.jwtService = jwtService;
     }
 
+    // User들의 정보를 조회
+    public List<GetNewsCommentRes> getNewsComment(int newsIdx) throws BaseException {
+        try {
+            List<GetNewsCommentRes> getCommmentsRes = reactionDao.getCommments(newsIdx);
+            return getCommmentsRes;
+        } catch (Exception exception) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }
