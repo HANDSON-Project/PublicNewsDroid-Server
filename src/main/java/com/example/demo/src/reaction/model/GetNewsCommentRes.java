@@ -1,8 +1,15 @@
 package com.example.demo.src.reaction.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.Timestamp;
 
-public class GetNewCommentRes {
+@Getter
+@Setter
+@AllArgsConstructor
+public class GetNewsCommentRes {
     private int commentIdx;
     private int userIdx;
     private String nickname;
