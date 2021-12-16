@@ -17,7 +17,20 @@ public class ReactionDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-   
+    // 뉴스 좋아요 생성
+    public void createNewsLike(PostNewsLikeReq postNewsLikeReq) {
+        String createNewsLikeQuery = "insert into NewsLike (userIdx, newsIdx) VALUES (?,?)";
+        Object[] createNewsLikeParams = new Object[]{postNewsLikeReq.getUserIdx(),postNewsLikeReq.getNewsIdx()};
+        this.jdbcTemplate.update(createNewsLikeQuery, createNewsLikeParams);
+    }
+
+    // 뉴스 좋아요 취소
+    public void deleteNewsLike(DeleteNewsLikeReq deleteNewsLikeReq) {
+        String deleteNewsLikeQuery = "delete from NewsLike where likeIdx = ?";
+        Object[] deleteNewsLikeParams = new Object[]{deleteNewsLikeReq.getLikeIdx()};
+        this.jdbcTemplate.update(deleteNewsLikeQuery, deleteNewsLikeParams);
+    }
+
     // 뉴스 댓글 생성
     public void createNewsCommment(PostNewsCommentReq postNewsCommentReq) {
         String createUserQuery = "insert into NewsComment (userIdx, newsIdx, context) VALUES (?,?,?)";
