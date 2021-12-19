@@ -31,7 +31,7 @@ public class ReactionController {
     // 뉴스 좋아요
     @ResponseBody
     @PostMapping("/likes")
-    public BaseResponse<String> createNews(@RequestBody PostNewsLikeReq postNewsLikeReq) {
+    public BaseResponse<String> createNewsLike(@RequestBody PostNewsLikeReq postNewsLikeReq) {
         // PostNewsLikeReq
         try {
             //jwt에서 idx 추출.
@@ -99,7 +99,7 @@ public class ReactionController {
     // 뉴스 댓글 조회
     @ResponseBody
     @GetMapping("/comments/{newsIdx}")
-    public BaseResponse<List<GetNewsCommentRes>> getUsers(@PathVariable("newsIdx") int newsIdx) {
+    public BaseResponse<List<GetNewsCommentRes>> getNewsComment(@PathVariable("newsIdx") int newsIdx) {
         try {
             List<GetNewsCommentRes> getNewCommentRes = reactionProvider.getNewsComment(newsIdx);
             return new BaseResponse<>(getNewCommentRes);
